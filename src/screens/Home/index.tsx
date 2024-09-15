@@ -10,7 +10,7 @@ export default function App() {
           />
         </View>
 
-        <View style={styles.containerTask}>
+        <View style={styles.containerTasks}>
           <View style={styles.containerNewTask}>
             <View style={styles.containerInput}>
               <TextInput 
@@ -24,6 +24,19 @@ export default function App() {
                 />
               </TouchableOpacity>
             </View>
+          </View>
+            
+          <View style={styles.containerTasksInfos}>
+            <View style={styles.containerTasksCriadas}>
+              <Text style={styles.textCriadas}>Criadas</Text>
+              <Text style={styles.counter}>0</Text>
+            </View>
+            
+            <View style={styles.containerTasksConcluidas}>
+              <Text style={styles.textConcluidas}>Concluídas</Text>
+              <Text style={styles.counter}>0</Text>
+            </View>
+            
           </View>
         </View>
     </View>

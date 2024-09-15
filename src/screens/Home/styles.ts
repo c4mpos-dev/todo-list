@@ -19,17 +19,20 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         gap: 4,
+        marginLeft: 25,
+        marginRight: 25
     },
     inputNewTask: {
-        width: 251, // 271
+        flex: 1,
         height: 54,
-        backgroundColor: "#262626",
         borderRadius: 6,
         borderWidth: 1,
         padding: 14,
+        backgroundColor: "#262626",
         borderColor: "#0D0D0D",
-        color: "#FFF"
-        
+        color: "#FFF",
+        fontSize: 16,
+        elevation: 1
     },
     buttonNewTask: {
         justifyContent: "center",
@@ -39,7 +42,48 @@ export const styles = StyleSheet.create({
         backgroundColor: "#1E6F9F",
         borderRadius: 6
     },
-    containerTask: {
+    containerTasksInfos: {
+        justifyContent: "space-between",
+        flexDirection: "row",
+        marginTop: 55,
+        marginLeft: 25,
+        marginRight: 25,
+        paddingBottom: 18,
+        borderBottomWidth: 2,
+        borderBottomColor: "#333333"
+    },
+    containerTasksCriadas: {
+        alignItems: "center",
+        flexDirection: "row",
+        gap: 8
+    },
+    containerTasksConcluidas: {
+        alignItems: "center",
+        flexDirection: "row",
+        gap: 8
+    },
+    textCriadas: {
+        fontSize: 14,
+        color: "#4EA8DE",
+        fontWeight: "bold"
+    },
+    textConcluidas: {
+        fontSize: 14,
+        color: "#8284FA",
+        fontWeight: "bold"
+    },
+    counter: {
+        backgroundColor: "#333333",
+        color: "#FFF",
+        fontWeight: "bold",
+        paddingTop: 2,
+        paddingBottom: 2,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 999
+    },
+    
+    containerTasks: {
         flex: 1,
         backgroundColor: "#1A1A1A"
     }
