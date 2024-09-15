@@ -48,9 +48,7 @@ export const styles = StyleSheet.create({
         marginTop: 55,
         marginLeft: 25,
         marginRight: 25,
-        paddingBottom: 18,
-        borderBottomWidth: 2,
-        borderBottomColor: "#333333"
+        marginBottom: 20
     },
     containerTasksCriadas: {
         alignItems: "center",
@@ -84,7 +82,11 @@ export const styles = StyleSheet.create({
     },
     containerListEmpty: {
         alignItems: "center",
-        marginTop: 40
+        paddingTop: 45,
+        borderTopWidth: 2,
+        borderTopColor: "#333333",
+        marginLeft: 25,
+        marginRight: 25
     },
     textOneListEmpty: {
         marginTop: 16,
