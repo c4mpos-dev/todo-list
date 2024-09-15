@@ -82,7 +82,18 @@ export const styles = StyleSheet.create({
         paddingRight: 10,
         borderRadius: 999
     },
-    
+    containerListEmpty: {
+        alignItems: "center",
+        marginTop: 40
+    },
+    textOneListEmpty: {
+        marginTop: 16,
+        color: "#808080",
+        fontWeight: "bold"
+    },
+    textTwoListEmpty: {
+        color: "#808080",
+    },
     containerTasks: {
         flex: 1,
         backgroundColor: "#1A1A1A"
