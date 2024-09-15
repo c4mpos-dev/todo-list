@@ -1,13 +1,13 @@
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
+import LogoToDo from '../../../assets/images/logoToDo.svg'
+import Plus from '../../../assets/images/plus.svg'
 
 export default function App() {
   return (
     <View style={styles.container}>
         <View style={styles.containerTop}>
-          <Image 
-            source={require('../../../assets/images/logoToDo.png')}
-          />
+          <LogoToDo/>
         </View>
 
         <View style={styles.containerTasks}>
@@ -19,9 +19,7 @@ export default function App() {
                 placeholderTextColor="#808080"
               />
               <TouchableOpacity style={styles.buttonNewTask}>
-                <Image
-                  source={require('../../../assets/images/plus.png')}
-                />
+                <Plus/>
               </TouchableOpacity>
             </View>
           </View>
