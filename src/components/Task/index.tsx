@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { styles } from "./styles"
 import Trash from "../../../assets/images/trash.svg"
 import Checkbox from 'expo-checkbox';
 
-export default function Task(){
+type Props = {
+    text: string;
+    onRemove: () => void;
+}
+
+export default function Task({ text, onRemove}: Props){
     const [isChecked, setIsChecked] = useState(false);
 
     return (
@@ -16,9 +21,9 @@ export default function Task(){
                 color={isChecked ? '#5E60CE' : '#4EA8DE'}
             />
             <Text style={[styles.content, { textDecorationLine: isChecked ? 'line-through' : 'none' }]}>
-                Integer urna interdum massa libero auctor neque turpis turpis.
+                {text}
             </Text>
-            <Trash style={styles.trash}/>
+            <Trash style={styles.trash} onPress={onRemove}/>
             
         </View>
     )

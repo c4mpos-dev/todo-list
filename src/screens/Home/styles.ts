@@ -98,7 +98,7 @@ export const styles = StyleSheet.create({
     },
     containerTasks: {
         flex: 1,
+        paddingBottom: 24,
         backgroundColor: "#1A1A1A"
     }
 })
-

@@ -1,11 +1,40 @@
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
+import React, { useState } from 'react';
 import { styles } from './styles';
 import Task from '../../components/Task/index'
 import LogoToDo from '../../../assets/images/logoToDo.svg'
 import Plus from '../../../assets/images/plus.svg'
 import Clipboard from '../../../assets/images/clipboard.svg'
 
-export default function App() {
+export default function Home() {
+  const [task, setTask] = useState<string[]>([]);
+  const [taskName, setTaskName] = useState('');
+
+  function handleTaskAdd(){
+    if (task.includes(taskName)) {
+      return Alert.alert("Tarefa existente", "Essa tarefa já está cadastrada na lista.")
+    }
+    else if (taskName == ''){
+      return Alert.alert("Tarefa vazia", "Digite um conteúdo para a tarefa, não é possível adicionar uma tarefa vazia.")
+    }
+    
+    setTask(prevState => [...prevState, taskName])
+    setTaskName('');
+  }
+
+  function handleTaskRemove(text: string){
+    Alert.alert("Remover Tarefa", `Realmente deseja essa tarefa?`, [
+      {
+        text: "Não",
+        style: "cancel"
+      },
+      {
+        text: "Sim",
+        onPress: () => setTask(prevState => prevState.filter(task => task != text))
+      }
+    ])
+  }
+
   return (
     <View style={styles.container}>
         <View style={styles.containerTop}>
@@ -19,6 +48,8 @@ export default function App() {
                 style={styles.inputNewTask}
                 placeholder='Adicione uma nova tarefa'
                 placeholderTextColor="#808080"
+                onChangeText={setTaskName}
+                value={taskName}
                 onFocus={(border) => {
                   border.target.setNativeProps({
                     style: { borderColor: '#5E60CE' }
@@ -30,7 +61,7 @@ export default function App() {
                   });
                 }}
               />
-              <TouchableOpacity style={styles.buttonNewTask}>
+              <TouchableOpacity style={styles.buttonNewTask} onPress={handleTaskAdd}>
                 <Plus/>
               </TouchableOpacity>
             </View>
@@ -48,19 +79,25 @@ export default function App() {
             </View>
           </View>
 
-          <View>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-          </View>
-
-          {/* List Empty */}
-          {/* <View style={styles.containerListEmpty}>
-            <Clipboard/>
-            <Text style={styles.textOneListEmpty}>Você ainda não tem tarefas cadastradas</Text>
-            <Text style={styles.textTwoListEmpty}>Crie tarefas e organize seus itens a fazer</Text>
-          </View> */}
+          <FlatList 
+            data={task}
+            keyExtractor={item => item}
+            renderItem={({ item }) => (
+              <Task
+                key={item}
+                text={item}  
+                onRemove={() => handleTaskRemove(item)}
+              />
+            )}   
+            showsVerticalScrollIndicator={false}    
+            ListEmptyComponent={() => (
+              <View style={styles.containerListEmpty}>
+                <Clipboard/>
+                <Text style={styles.textOneListEmpty}>Você ainda não tem tarefas cadastradas</Text>
+                <Text style={styles.textTwoListEmpty}>Crie tarefas e organize seus itens a fazer</Text>
+              </View>
+            )}                               
+          /> 
 
         </View>
     </View>
