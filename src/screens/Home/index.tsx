@@ -1,4 +1,4 @@
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 import Task from '../../components/Task/index'
 import LogoToDo from '../../../assets/images/logoToDo.svg'

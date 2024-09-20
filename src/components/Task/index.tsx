@@ -15,7 +15,7 @@ export default function Task(){
                 style={styles.checkbox}
                 color={isChecked ? '#5E60CE' : '#4EA8DE'}
             />
-            <Text style={styles.content}>
+            <Text style={[styles.content, { textDecorationLine: isChecked ? 'line-through' : 'none' }]}>
                 Integer urna interdum massa libero auctor neque turpis turpis.
             </Text>
             <Trash style={styles.trash}/>
