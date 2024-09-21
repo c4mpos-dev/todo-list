@@ -68,8 +68,8 @@ npx expo start
 <table>
    <tr>
       <center>
-         <td><img src="assets/images/List.png" alt="List" width="300" height="700"/></td>
-         <td><img src="assets/images/EmptyList.png" alt="EmptyList" width="300" height="700"/></td>
+         <td><img src="assets/List.png" alt="List" width="300" height="700"/></td>
+         <td><img src="assets/EmptyList.png" alt="EmptyList" width="300" height="700"/></td>
       </center>
    </tr>
 </table>
