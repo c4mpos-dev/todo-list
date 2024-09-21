@@ -7,9 +7,11 @@ import Plus from '../../../assets/images/plus.svg'
 import Clipboard from '../../../assets/images/clipboard.svg'
 
 export default function Home() {
-  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
   const [task, setTask] = useState<string[]>([]);
   const [taskName, setTaskName] = useState('');
+  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
+  const [showCompletedTasks, setShowCompletedTasks] = useState(false);
+  const tasksToShow = showCompletedTasks ? completedTasks : task;
 
   function handleTaskAdd(){
     if (task.includes(taskName)) {
@@ -41,10 +43,18 @@ export default function Home() {
 
   function taskComplete(text: string) {
     if (completedTasks.includes(text)) {
-      setCompletedTasks(prevCompleted => prevCompleted.filter(task => task !== text));  // Desmarca como concluída
+      setCompletedTasks(prevCompleted => prevCompleted.filter(task => task !== text));  
     } else {
-      setCompletedTasks(prevCompleted => [...prevCompleted, text]);  // Marca como concluída
+      setCompletedTasks(prevCompleted => [...prevCompleted, text]);  
     }
+  }
+
+  function toggleShowCompletedTasks() {
+    setShowCompletedTasks(true);
+  }
+
+  function toggleShowCreatedTasks() {
+    setShowCompletedTasks(false);
   }
 
   return (
@@ -80,23 +90,27 @@ export default function Home() {
           </View>
             
           <View style={styles.containerTasksInfos}>
-            <View style={styles.containerTasksCriadas}>
-              <Text style={styles.textCriadas}>Criadas</Text>
-              <View style={styles.containerCounter}>
-                <Text style={styles.counter}>{task.length}</Text>
+            <TouchableOpacity onPress={toggleShowCreatedTasks}>  
+              <View style={styles.containerTasksCriadas}>
+                <Text style={styles.textCriadas}>Criadas</Text>
+                <View style={styles.containerCounter}>
+                  <Text style={styles.counter}>{task.length}</Text>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             
-            <View style={styles.containerTasksConcluidas}>
-              <Text style={styles.textConcluidas}>Concluídas</Text>
-              <View style={styles.containerCounter}>
-                <Text style={styles.counter}>{completedTasks.length}</Text>
+            <TouchableOpacity onPress={toggleShowCompletedTasks}>         
+              <View style={styles.containerTasksConcluidas}>
+                <Text style={styles.textConcluidas}>Concluídas</Text>
+                <View style={styles.containerCounter}>
+                  <Text style={styles.counter}>{completedTasks.length}</Text>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
           <FlatList 
-            data={task}
+            data={tasksToShow}
             keyExtractor={item => item}
             renderItem={({ item }) => (
               <Task
