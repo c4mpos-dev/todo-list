@@ -6,17 +6,17 @@ import Checkbox from 'expo-checkbox';
 
 type Props = {
     text: string;
+    isChecked: boolean;
     onRemove: () => void;
+    onComplete: () => void
 }
 
-export default function Task({ text, onRemove}: Props){
-    const [isChecked, setIsChecked] = useState(false);
-
+export default function Task({ text, onRemove, isChecked, onComplete}: Props){
     return (
         <View style={styles.container}>
             <Checkbox
                 value={isChecked}
-                onValueChange={setIsChecked}
+                onValueChange={onComplete}
                 style={styles.checkbox}
                 color={isChecked ? '#5E60CE' : '#4EA8DE'}
             />

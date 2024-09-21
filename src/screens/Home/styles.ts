@@ -70,15 +70,17 @@ export const styles = StyleSheet.create({
         color: "#8284FA",
         fontWeight: "bold"
     },
+    containerCounter: {
+        borderRadius: 999,
+        backgroundColor: "#333333"
+    },
     counter: {
-        backgroundColor: "#333333",
         color: "#FFF",
         fontWeight: "bold",
         paddingTop: 2,
         paddingBottom: 2,
         paddingLeft: 10,
         paddingRight: 10,
-        borderRadius: 999
     },
     containerListEmpty: {
         alignItems: "center",

@@ -7,6 +7,7 @@ import Plus from '../../../assets/images/plus.svg'
 import Clipboard from '../../../assets/images/clipboard.svg'
 
 export default function Home() {
+  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
   const [task, setTask] = useState<string[]>([]);
   const [taskName, setTaskName] = useState('');
 
@@ -30,9 +31,20 @@ export default function Home() {
       },
       {
         text: "Sim",
-        onPress: () => setTask(prevState => prevState.filter(task => task != text))
+        onPress: () => {
+        setTask(prevState => prevState.filter(task => task != text));
+        setCompletedTasks(prevState => prevState.filter(completedTask => completedTask != text));
+        }
       }
-    ])
+    ]);
+  }
+
+  function taskComplete(text: string) {
+    if (completedTasks.includes(text)) {
+      setCompletedTasks(prevCompleted => prevCompleted.filter(task => task !== text));  // Desmarca como concluída
+    } else {
+      setCompletedTasks(prevCompleted => [...prevCompleted, text]);  // Marca como concluída
+    }
   }
 
   return (
@@ -70,12 +82,16 @@ export default function Home() {
           <View style={styles.containerTasksInfos}>
             <View style={styles.containerTasksCriadas}>
               <Text style={styles.textCriadas}>Criadas</Text>
-              <Text style={styles.counter}>0</Text>
+              <View style={styles.containerCounter}>
+                <Text style={styles.counter}>{task.length}</Text>
+              </View>
             </View>
             
             <View style={styles.containerTasksConcluidas}>
               <Text style={styles.textConcluidas}>Concluídas</Text>
-              <Text style={styles.counter}>0</Text>
+              <View style={styles.containerCounter}>
+                <Text style={styles.counter}>{completedTasks.length}</Text>
+              </View>
             </View>
           </View>
 
@@ -87,6 +103,8 @@ export default function Home() {
                 key={item}
                 text={item}  
                 onRemove={() => handleTaskRemove(item)}
+                onComplete={() => taskComplete(item)}
+                isChecked={completedTasks.includes(item)}
               />
             )}   
             showsVerticalScrollIndicator={false}    
